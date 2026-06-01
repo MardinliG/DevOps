@@ -1,0 +1,64 @@
+name: projet07
+
+services:
+  loki:
+    image: grafana/loki:3.4.2
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/config.yml
+    volumes:
+      - ./loki/loki-config.yml:/etc/loki/config.yml:ro
+      - loki-data:/loki
+    labels:
+      logging: "promtail"
+    restart: unless-stopped
+
+  promtail:
+    image: grafana/promtail:3.4.2
+    container_name: promtail
+    user: root
+    command: -config.file=/etc/promtail/config.yml
+    volumes:
+      - ./promtail/promtail-config.yml:/etc/promtail/config.yml:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - promtail-positions:/tmp
+    depends_on:
+      - loki
+    labels:
+      logging: "promtail"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: "Admin"
+      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - grafana-data:/var/lib/grafana
+    labels:
+      logging: "promtail"
+    depends_on:
+      - loki
+    restart: unless-stopped
+
+  api:
+    build: ./services/api
+    container_name: api
+    ports:
+      - "8080:8080"
+    environment:
+      SERVICE_NAME: api
+    labels:
+      logging: "promtail"
+    restart: unless-stopped
+
+volumes:
+  loki-data:
+  promtail-positions:
+  grafana-data:
