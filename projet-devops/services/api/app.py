@@ -140,7 +140,7 @@ def delete(tid):
     if not todo:
         log("error", "todo not found", todo_id=tid, status=404)
         return redirect(url_for("index"))
-    todos = [t for t in todos if t["id"] != tid]
+    todos[:] = [t for t in todos if t["id"] != tid]
     log("warn", "todo deleted", todo_id=tid, title=todo["title"])
     return redirect(url_for("index"))
 
