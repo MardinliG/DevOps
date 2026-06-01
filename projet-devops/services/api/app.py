@@ -31,7 +31,7 @@ HTML = """
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Todo List — Projets 0777</title>
+  <title>Todo List — Projet 07</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; padding: 2rem; }
@@ -62,7 +62,7 @@ HTML = """
 </head>
 <body>
 <div class="container">
-  <h1>📋 Todo List Test</h1>
+  <h1>📋 Todo List</h1>
   <p class="subtitle">Chaque action génère un log JSON → Promtail → Loki → Grafana</p>
 
   <form class="add-form" method="POST" action="/todos">

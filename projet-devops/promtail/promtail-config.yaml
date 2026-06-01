@@ -14,15 +14,5 @@ scrape_configs:
       - host: unix:///var/run/docker.sock
         refresh_interval: 5s
     relabel_configs:
-      - source_labels: ['__meta_docker_container_label_logging']
-        regex: 'promtail'
-        action: keep
       - source_labels: ['__meta_docker_container_name']
-        regex: '/(.*)'
         target_label: 'container'
-      - source_labels: ['__meta_docker_container_label_com_docker_compose_service']
-        target_label: 'service'
-      - target_label: 'job'
-        replacement: 'docker-logs'
-      - target_label: 'env'
-        replacement: 'dev'
