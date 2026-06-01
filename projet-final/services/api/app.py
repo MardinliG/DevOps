@@ -31,7 +31,7 @@ HTML = """
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Todo List — Projet 07</title>
+  <title>Todo List — Projets 0777</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; padding: 2rem; }
