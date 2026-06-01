@@ -62,7 +62,7 @@ HTML = """
 </head>
 <body>
 <div class="container">
-  <h1>📋 Todo List</h1>
+  <h1>📋 Todo List Test</h1>
   <p class="subtitle">Chaque action génère un log JSON → Promtail → Loki → Grafana</p>
 
   <form class="add-form" method="POST" action="/todos">
