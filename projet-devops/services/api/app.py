@@ -67,7 +67,7 @@ HTML = """
 
   <form class="add-form" method="POST" action="/todos">
     <input name="title" placeholder="Nouvelle tâche..." autofocus required>
-    <button class="btn btn-add">Ajouter</button>
+    <button class="btn btn-add">Ajouter une tâche</button>
   </form>
 
   <div class="todo-list">
